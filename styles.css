@@ -295,7 +295,7 @@
             flex-wrap: wrap;
             padding: 20px;
         }
-      
+
         .overlay {
             position: fixed;
             top: 0;
@@ -314,7 +314,7 @@
             pointer-events: all;
         }
         
-      
+        
         footer {
             background-color: #333;
             color: white;
@@ -561,3 +561,89 @@
         height: 300px;
     }
 }
+
+.experiencia-section {
+    background: linear-gradient(135deg, #f1f1f1, #e0e0e0);
+    border-radius: 20px;
+    padding: 80px 20px;
+    text-align: center;
+    color: #1a1a1a;
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.experiencia-subtitulo {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    color: #555;
+    letter-spacing: 1px;
+}
+
+.experiencia-titulo {
+    font-size: 2.2rem;
+    line-height: 1.4;
+    margin: 0 auto 30px;
+    max-width: 700px;
+}
+
+.formulario-test-drive {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.formulario-test-drive input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.formulario-test-drive button {
+    background-color: #333;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.formulario-test-drive button:hover {
+    background-color: #555;
+}
+
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border-radius: 50%;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-float img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
