@@ -29,13 +29,13 @@
         
         .lista a {
             text-decoration: none;
-            color: #333;
+            color: #ffffff;
             font-weight: 500;
             transition: color 0.3s;
         }
         
         .lista a:hover {
-            color: #818580;
+            color: #fefffe;
         }
         
         
@@ -100,6 +100,7 @@
             padding: 3rem 5%;
             max-width: 1400px;
             margin: 5px;
+
 }
 
 
@@ -212,8 +213,8 @@
             background-color: #8c8d87e8;
         }
 
-        .Linkwpp {
-            color: white;
+        .wsp {
+            color: rgb(17, 17, 17);
             text-decoration: none;
         }
 
