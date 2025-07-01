@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>fariasautomotores -Nosotros</title>
+    <title>fariasautomotores - Nosotros</title>
     <link rel="stylesheet" href="../styles.css">
     <link rel="shortcut icon" href="../assets/LOGO.png" type="image/x-icon">
 </head>
-
 <body>
     <header>
         <nav class="navbar">
-            <a href="./index.html" class="logo"> <img src="../assets/LOGO.png" alt="" id="logo1"></a>
+            <a href="../index.html" class="logo"><img src="../assets/LOGO.png" alt="Logo Farias Automotores" id="logo1"></a>
+            <button class="menu-toggle" aria-label="Menú">☰</button>
             <ul class="lista">
                 <li><a href="../index.html">Inicio</a></li>
                 <li><a href="../index.html#productos">Productos</a></li>
@@ -22,28 +21,47 @@
             </ul>
         </nav>
     </header>
-    <main></main>
-        <h1 class="acercade"></h1>
+    
+    <main>
         <section class="nosotros-contenedor">
-    <h2 class="section-title">¿Quiénes Somos?</h2>
-    <p class="nosotros-texto">
-    <strong>En Farias Automotores, no solo vendemos vehículos: ofrecemos confianza sobre ruedas.</strong><br>
-    Desde nuestros inicios, nos propusimos ser una concesionaria distinta. Cada auto que ingresa a nuestro salón es seleccionado bajo estrictos criterios de calidad, y cada cliente que nos elige se convierte en parte de nuestra familia. 
-    Somos un equipo apasionado por los motores, por el buen trato y por superar las expectativas. Con atención personalizada, asesoramiento real y garantía de transparencia, convertimos cada compra en una experiencia memorable.
-    </p>
-</section>
-</main>
+            <h2 class="section-title">¿Quiénes Somos?</h2>
+            <p class="nosotros-texto">
+                <strong>En Farias Automotores, no solo vendemos vehículos: ofrecemos confianza sobre ruedas.</strong><br>
+                Desde nuestros inicios, nos propusimos ser una concesionaria distinta. Cada auto que ingresa a nuestro salón es seleccionado bajo estrictos criterios de calidad, y cada cliente que nos elige se convierte en parte de nuestra familia. 
+                Somos un equipo apasionado por los motores, por el buen trato y por superar las expectativas. Con atención personalizada, asesoramiento real y garantía de transparencia, convertimos cada compra en una experiencia memorable.
+            </p>
+        </section>
+    </main>
+
     <footer>
         <div class="footer-content">
             <div class="social-icons">
-                <a href="https://wa.me/2915137488"> <img src="../assets/wsplogo.jpg" alt="whatsapp" class="Iconowpp"></a>
-                <a href="#"> <img src="" alt=""></a>
-                <a href="#"> <img src="" alt=""></a>
+                <a href="https://wa.me/2915137488" aria-label="WhatsApp">
+                    <img src="../assets/wsplogo.jpg" alt="WhatsApp" class="Iconowpp">
+                </a>
             </div>
-            <p class="copyright">© 2025 FARIASAUTMOTORES.Derechos reservados BY Luca Farias.</p>
+            <p class="copyright">© 2025 FARIASAUTMOTORES. Derechos reservados BY Luca Farias.</p>
         </div>
     </footer>
-<a href="https://wa.me/542915137488" target="_blank" class="whatsapp-float">
-    <img src="../assets/1671c09a32f98796ede36fabfab4dee7.jpg" alt="WhatsApp" />
+
+    <a href="https://wa.me/542915137488" target="_blank" class="whatsapp-float" aria-label="Contactar por WhatsApp">
+        <img src="../assets/1671c09a32f98796ede36fabfab4dee7.jpg" alt="WhatsApp">
+    </a>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.lista').classList.toggle('active');
+            this.textContent = document.querySelector('.lista').classList.contains('active') ? '✕' : '☰';
+        });
+
+        document.querySelectorAll('.lista a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 1024) {
+                    document.querySelector('.lista').classList.remove('active');
+                    document.querySelector('.menu-toggle').textContent = '☰';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

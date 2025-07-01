@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-            <header>
+    <header>
         <nav class="navbar">
-            <a href="./index.html" class="logo"> <img src="../assets/LOGO.png" alt="" id="logo1"></a>
+            <a href="../index.html" class="logo"><img src="../assets/LOGO.png" alt="Logo Farias Automotores" id="logo1"></a>
+            <button class="menu-toggle" aria-label="Menú">☰</button>
             <ul class="lista">
                 <li><a href="../index.html">Inicio</a></li>
                 <li><a href="../pages/tienda.html">Productos</a></li>
@@ -20,6 +21,7 @@
             </ul>
         </nav>
     </header>
+    
     <main>
         <div class="section-title">
             <div class="sub-header">
@@ -32,17 +34,14 @@
                     <h3>Dirección</h3>
                     <p>Dondado 288<br>Bahia Blanca, Buenos Aires, Argentina.</p>
                 </div>
-
                 <div>
                     <h3>E-mail</h3>
                     <p>fariasautomotores@hotmail.com</p>
                 </div>
-
                 <div>
                     <h3>Teléfonos</h3>
                     <p>WhatsApp: +54 2915137488</p>
                 </div>
-
                 <div>
                     <h3>Seguinos</h3> <br>
                     <a href="#"><img src="../assets/instragram.jpg" alt="Instagram" class="icono-app"></a>
@@ -51,22 +50,40 @@
             </div>
             
             <div class="mapa-contacto">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3112.754894995659!2d-62.26811!3d-38.723436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95edbcb403aff33d%3A0xf6e7a9e5f2ee7089!2sG.%20FARIAS%20Automotores!5e0!3m2!1ses-419!2sar!4v1750220825826!5m2!1ses-419!2sar" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3112.754894995659!2d-62.26811!3d-38.723436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95edbcb403aff33d%3A0xf6e7a9e5f2ee7089!2sG.%20FARIAS%20Automotores!5e0!3m2!1ses-419!2sar!4v1750220825826!5m2!1ses-419!2sar" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </section>
-<a href="https://wa.me/542915137488" target="_blank" class="whatsapp-float">
-    <img src="../assets/1671c09a32f98796ede36fabfab4dee7.jpg" alt="WhatsApp" />
-</a>
     </main>
-            <footer>
+
+    <footer>
         <div class="footer-content">
             <div class="social-icons">
-                <a href="https://wa.me/2915137488"> <img src="../assets/wsplogo.jpg" alt="whatsapp" class="Iconowpp"></a>
-                <a href="#"> <img src="" alt=""></a>
-                <a href="#"> <img src="" alt=""></a>
+                <a href="https://wa.me/2915137488" aria-label="WhatsApp">
+                    <img src="../assets/wsplogo.jpg" alt="WhatsApp" class="Iconowpp">
+                </a>
             </div>
-            <p class="copyright">© 2025 FARIASAUTMOTORES.Derechos reservados BY Luca Farias.</p>
+            <p class="copyright">© 2025 FARIASAUTMOTORES. Derechos reservados BY Luca Farias.</p>
         </div>
-        </footer>
-    </body>
+    </footer>
+
+    <a href="https://wa.me/542915137488" target="_blank" class="whatsapp-float" aria-label="Contactar por WhatsApp">
+        <img src="../assets/1671c09a32f98796ede36fabfab4dee7.jpg" alt="WhatsApp">
+    </a>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.lista').classList.toggle('active');
+            this.textContent = document.querySelector('.lista').classList.contains('active') ? '✕' : '☰';
+        });
+
+        document.querySelectorAll('.lista a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 1024) {
+                    document.querySelector('.lista').classList.remove('active');
+                    document.querySelector('.menu-toggle').textContent = '☰';
+                }
+            });
+        });
+    </script>
+</body>
 </html>

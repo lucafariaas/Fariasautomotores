@@ -8,9 +8,10 @@
     <link rel="shortcut icon" href="../assets/LOGO.png" type="image/x-icon">
 </head>
 <body>
-        <header>
+    <header>
         <nav class="navbar">
-            <a href="./index.html" class="logo"> <img src="../assets/LOGO.png" alt="" id="logo1"></a>
+            <a href="../index.html" class="logo"><img src="../assets/LOGO.png" alt="Logo Farias Automotores" id="logo1"></a>
+            <button class="menu-toggle" aria-label="Menú">☰</button>
             <ul class="lista">
                 <li><a href="../index.html">Inicio</a></li>
                 <li><a href="../pages/tienda.html">Productos</a></li>
@@ -20,24 +21,27 @@
             </ul>
         </nav>
     </header>
+    
     <main>
-    <section class="hero">
-        <h1>G.Farias automores de alta gama</h1>
-        <p>G.Farias - Tu proxima parada empieza aca.</p>
-        <a href="#productos" class="btn">Ver colección</a>
-    </section>
+        <section class="hero">
+            <h1>G.Farias automores de alta gama</h1>
+            <p>G.Farias - Tu próxima parada empieza aquí.</p>
+            <a href="#productos" class="btn">Ver colección</a>
+        </section>
 
-<section class="products" id="productos">
-    <h2 class="section-title">AUTOMOTORES A LA VENTA</h2>
-    <div class="product-grid">
-        
-        <div class="product-card">
-                <img src="../assets/218i.jpg" alt="Automotor" class="product-img">
-                <div class="product-info">
-                    <h3 class="product-title">BMW 218i 2018</h3>
-                    <button class="add-to-cart"> <a href="https://wa.me/2915137488" class="wsp">Comprar por whatsapp</a></button>
-                </div>
-            </div>
+        <section class="products" id="productos">
+            <h2 class="section-title">AUTOMOTORES A LA VENTA</h2>
+            <div class="product-grid">
+                <!-- Tus productos aquí (mantenidos exactamente igual) -->
+                <div class="product-card">
+                    <img src="../assets/218i.jpg" alt="BMW 218i 2018" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <h3 class="product-title">BMW 218i 2018</h3>
+                        <button class="add-to-cart">
+                            <a href="https://wa.me/2915137488" class="wsp">Comprar por whatsapp</a>
+                        </button>
+                    </div>
+                    </div>
             <div class="product-card">
                 <img src="../assets/207gt.jpg" alt="Automotor" class="product-img">
                 <div class="product-info">
@@ -116,21 +120,38 @@
                 </div>
             </div>
 </section>
-<a href="https://wa.me/542915137488" target="_blank" class="whatsapp-float">
-    <img src="../assets/1671c09a32f98796ede36fabfab4dee7.jpg" alt="WhatsApp" />
-</a>
-</main>
+        </section>
+    </main>
+
     <footer>
-            <footer>
         <div class="footer-content">
             <div class="social-icons">
-                <a href="https://wa.me/2915137488"> <img src="../assets/wsplogo.jpg" alt="whatsapp" class="Iconowpp"></a>
-                <a href="#"> <img src="" alt=""></a>
-                <a href="#"> <img src="" alt=""></a>
+                <a href="https://wa.me/2915137488" aria-label="WhatsApp">
+                    <img src="../assets/wsplogo.jpg" alt="WhatsApp" class="Iconowpp">
+                </a>
             </div>
-            <p class="copyright">© 2025 FARIASAUTMOTORES.Derechos reservados BY Luca Farias.</p>
+            <p class="copyright">© 2025 FARIASAUTMOTORES. Derechos reservados BY Luca Farias.</p>
         </div>
-        </footer>
     </footer>
+
+    <a href="https://wa.me/542915137488" target="_blank" class="whatsapp-float" aria-label="Contactar por WhatsApp">
+        <img src="../assets/1671c09a32f98796ede36fabfab4dee7.jpg" alt="WhatsApp">
+    </a>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.lista').classList.toggle('active');
+            this.textContent = document.querySelector('.lista').classList.contains('active') ? '✕' : '☰';
+        });
+
+        document.querySelectorAll('.lista a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 1024) {
+                    document.querySelector('.lista').classList.remove('active');
+                    document.querySelector('.menu-toggle').textContent = '☰';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

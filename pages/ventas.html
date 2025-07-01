@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fariasautomotores - Ventas</title>
     <link rel="shortcut icon" href="../assets/LOGO.png" type="image/x-icon">
     <link rel="stylesheet" href="../styles.css">
-    <title>fariasautomotores - Ventas</title>
 </head>
 <body>
     <header>
         <nav class="navbar">
-            <a href="./index.html" class="logo"> <img src="../assets/LOGO.png" alt="" id="logo1"></a>
+            <a href="../index.html" class="logo"><img src="../assets/LOGO.png" alt="Logo Farias Automotores" id="logo1"></a>
+            <button class="menu-toggle" aria-label="Menú">☰</button>
             <ul class="lista">
                 <li><a href="../index.html">Inicio</a></li>
                 <li><a href="../pages/tienda.html">Productos</a></li>
@@ -20,30 +21,49 @@
             </ul>
         </nav>
     </header>
+    
     <main>
         <section class="ventas-contenedor">
-    <h2 class="section-title">Ventas</h2>
-    <p class="ventas-texto">
-    <strong>¿Estás listo para dar el próximo paso? En Farias Automotores tenemos el vehículo ideal para vos.</strong><br>
-    Cada unidad que ofrecemos fue revisada, verificada y puesta a punto por nuestro equipo especializado.
-    Nos enfocamos en que cada cliente encuentre no solo un auto, sino una solución a su estilo de vida.<br><br>
-    Contamos con planes de financiación personalizados, recibimos tu usado como parte de pago, y te asesoramos desde la primera consulta hasta el momento en que salís manejando tu nueva adquisición.
-    Además, ofrecemos garantía escrita, gestión de papeles en el acto y atención postventa.
-    </p>
-    <a href="https://wa.me/542915137488" target="_blank" class="whatsapp-float">
-    <img src="../assets/1671c09a32f98796ede36fabfab4dee7.jpg" alt="WhatsApp" />
-</a>
-</section>
-            <footer>
+            <h2 class="section-title">Ventas</h2>
+            <p class="ventas-texto">
+                <strong>¿Estás listo para dar el próximo paso? En Farias Automotores tenemos el vehículo ideal para vos.</strong><br>
+                Cada unidad que ofrecemos fue revisada, verificada y puesta a punto por nuestro equipo especializado.
+                Nos enfocamos en que cada cliente encuentre no solo un auto, sino una solución a su estilo de vida.<br><br>
+                Contamos con planes de financiación personalizados, recibimos tu usado como parte de pago, y te asesoramos desde la primera consulta hasta el momento en que salís manejando tu nueva adquisición.
+                Además, ofrecemos garantía escrita, gestión de papeles en el acto y atención postventa.
+            </p>
+        </section>
+    </main>
+
+    <footer>
         <div class="footer-content">
             <div class="social-icons">
-                <a href="https://wa.me/2915137488"> <img src="../assets/wsplogo.jpg" alt="whatsapp" class="Iconowpp"></a>
-                <a href="#"> <img src="" alt=""></a>
-                <a href="#"> <img src="" alt=""></a>
+                <a href="https://wa.me/2915137488" aria-label="WhatsApp">
+                    <img src="../assets/wsplogo.jpg" alt="WhatsApp" class="Iconowpp">
+                </a>
             </div>
-            <p class="copyright">© 2025 FARIASAUTMOTORES.Derechos reservados BY Luca Farias.</p>
+            <p class="copyright">© 2025 FARIASAUTMOTORES. Derechos reservados BY Luca Farias.</p>
         </div>
-        </footer>
-    </main>
+    </footer>
+
+    <a href="https://wa.me/542915137488" target="_blank" class="whatsapp-float" aria-label="Contactar por WhatsApp">
+        <img src="../assets/1671c09a32f98796ede36fabfab4dee7.jpg" alt="WhatsApp">
+    </a>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.lista').classList.toggle('active');
+            this.textContent = document.querySelector('.lista').classList.contains('active') ? '✕' : '☰';
+        });
+
+        document.querySelectorAll('.lista a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 1024) {
+                    document.querySelector('.lista').classList.remove('active');
+                    document.querySelector('.menu-toggle').textContent = '☰';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
