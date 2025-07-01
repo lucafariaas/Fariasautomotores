@@ -53,7 +53,7 @@
             document.querySelector('.lista').classList.toggle('active');
             this.textContent = document.querySelector('.lista').classList.contains('active') ? '✕' : '☰';
         });
-
+        
         document.querySelectorAll('.lista a').forEach(link => {
             link.addEventListener('click', function() {
                 if (window.innerWidth <= 1024) {
