@@ -15,23 +15,29 @@ $color-detail-price: #a9cb22e8;
 $shadow-header: 0 2px 10px rgba(0, 0, 0, 0.1);
 $transition-default: 0.3s;
 
-/* ==================== ANIMACIONES NUEVAS ==================== */
+/* Animaciones agregadas */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
+@keyframes slideInFromTop {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: white; }
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }
 
-/* ==================== ESTRUCTURA ORIGINAL (CON ANIMACIONES INTEGRADAS) ==================== */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -42,8 +48,7 @@ $transition-default: 0.3s;
 body {
     background-color: $color-bg;
     color: $color-text;
-    opacity: 0;
-    animation: fadeIn 0.8s ease-out forwards; /* Animación nueva */
+    animation: fadeIn 0.5s ease-out;
 }
 
 header {
@@ -52,6 +57,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
+    animation: slideInFromTop 0.5s ease-out;
 
     .navbar {
         display: flex;
@@ -64,13 +70,15 @@ header {
         .logo {
             position: absolute;
             left: 2rem;
+            transition: transform $transition-default;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+
             img {
                 height: 65px;
                 display: block;
-                transition: transform 0.3s ease; /* Animación nueva */
-                &:hover {
-                    transform: rotate(5deg) scale(1.05); /* Animación nueva */
-                }
             }
         }
 
@@ -84,9 +92,10 @@ header {
             font-size: 1.8rem;
             cursor: pointer;
             z-index: 101;
-            transition: transform 0.3s ease; /* Animación nueva */
+            transition: transform $transition-default;
+
             &:hover {
-                transform: scale(1.1); /* Animación nueva */
+                transform: scale(1.1);
             }
         }
 
@@ -94,116 +103,117 @@ header {
             display: flex;
             list-style: none;
             margin: 0 auto; 
+
             li {
                 margin: 0 1rem; 
+                position: relative;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 0;
+                    height: 2px;
+                    bottom: -5px;
+                    left: 0;
+                    background-color: $color-white;
+                    transition: width $transition-default;
+                }
+
+                &:hover::after {
+                    width: 100%;
+                }
+
                 a {
                     text-decoration: none;
                     color: $color-white;
                     font-weight: 500;
-                    transition: all 0.3s ease;
-                    position: relative;
+                    transition: color $transition-default;
+
                     &:hover {
                         color: #fefffe;
-                        &::after {
-                            width: 100%;
-                            left: 0;
-                        }
-                    }
-                    &::after {
-                        content: '';
-                        position: absolute;
-                        width: 0;
-                        height: 2px;
-                        background: $color-white;
-                        bottom: -5px;
-                        left: 50%;
-                        transition: all 0.3s ease; /* Animación nueva */
                     }
                 }
             }
         }
-    }
-}
 
-/* ==================== MENÚ HAMBURGUESA MODIFICADO ==================== */
-@media (max-width: 1024px) {
-    .navbar {
-        justify-content: space-between;
-        padding: 1rem 1.5rem;
-
-        .logo {
-            position: static;
-            order: 1;
-            img {
-                height: 55px;
-            }
-        }
-
-        .menu-toggle {
-            display: block;
-            order: 3;
+        .desplegable {
             position: relative;
-            right: auto;
-            margin-left: auto;
-            font-size: 1.8rem;
-            z-index: 1001;
-            background: rgba(255,255,255,0.1);
-            border-radius: 4px;
-            padding: 0.2rem 0.5rem;
-            transition: all 0.3s ease;
-            
-            &:hover {
-                background: rgba(255,255,255,0.2);
-                transform: scale(1.05);
-            }
         }
+    }
 
-        .lista {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 80%;
-            height: 100vh;
-            background-color:black($color-header, 5%);
-            flex-direction: column;
-            padding: 5rem 1rem 1rem;
-            margin: 0;
-            transition: left 0.4s cubic-bezier(0.77, 0, 0.18, 1);
-            z-index: 1000;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+    @media (max-width: 1024px) {
+        .navbar {
+            justify-content: space-between;
 
-            &.active {
-                left: 0;
+            .menu-toggle {
+                display: block; 
             }
 
-            li {
-                margin: 0.5rem 0 !important;
+            .lista {
+                position: fixed;
+                top: 90px;
+                left: 0;
                 width: 100%;
-                text-align: left;
-                padding-left: 1rem;
-                border-left: 3px solid transparent;
-                transition: all 0.3s ease;
+                background-color: rgb(150, 146, 146);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                margin: 0;
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 100;
 
-                &:hover {
-                    border-left-color: $color-white;
+                &.active {
+                    transform: translateY(0);
                 }
 
-                a {
-                    display: block;
-                    padding: 0.8rem;
-                    font-size: 1.1rem;
-                    transition: all 0.3s ease;
+                li {
+                    margin: 1rem 0 !important;
+                    width: 100%;
+                    text-align: center;
 
-                    &::after {
-                        display: none;
+                    a {
+                        display: block;
+                        padding: 0.5rem;
+                        font-size: 1.2rem;
                     }
                 }
             }
         }
     }
+
+    .submenu {
+        display: none;
+        position: absolute;
+        background-color: $color-white;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        list-style: none;
+        padding: 0.5rem 0;
+        border-radius: 5px;
+        top: 100%;
+        left: 0;
+        z-index: 100;
+        animation: fadeIn 0.3s ease-out;
+
+        li a {
+            display: block;
+            padding: 0.5rem 1.5rem;
+            color: $color-text;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background-color $transition-default;
+
+            &:hover {
+                background-color: $color-bg;
+            }
+        }
+    }
+
+    &:hover .submenu {
+        display: block;
+    }
 }
 
-/* ==================== RESTO DEL CÓDIGO PERMANECE EXACTAMENTE IGUAL ==================== */
 .hero {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./assets/LOCAL\ DE\ FRENTE.jpg');
     background-size: cover;
@@ -216,22 +226,19 @@ header {
     text-align: center;
     color: $color-white;
     padding: 0 1rem;
+    animation: fadeIn 1s ease-out;
 
     h1 {
         font-size: 3rem;
         margin-bottom: 1rem;
-        overflow: hidden;
-        white-space: nowrap;
-        border-right: 3px solid white;
-        animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
+        animation: slideInFromTop 0.8s ease-out;
     }
 
     p {
         font-size: 1.2rem;
         margin-bottom: 2rem;
         max-width: 700px;
-        animation: fadeIn 1s ease-out 1.5s forwards;
-        opacity: 0;
+        animation: fadeIn 1.2s ease-out;
     }
 }
 
@@ -243,42 +250,19 @@ header {
     border-radius: 30px;
     text-decoration: none;
     font-weight: 600;
-    transition: all 0.4s ease;
-    position: relative;
-    overflow: hidden;
+    transition: background-color $transition-default, transform $transition-default;
+    animation: pulse 2s infinite;
 
     &:hover {
         background-color: $color-btn-hover;
         transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        &::before {
-            transform: translateX(100%) skewX(-15deg);
-            opacity: 1;
-            transition: transform 0.7s ease, opacity 0.7s ease;
-        }
-    }
-
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        transform: skewX(-15deg);
-        opacity: 0;
+        animation: none;
     }
 }
-
-/* ... (todo el resto de tu código SASS se mantiene exactamente igual) ... */
-
-/* SOLO SE MODIFICÓ EL BLOQUE DEL MENÚ HAMBURGUESA, TODO LO DEMÁS PERMANECE IGUAL */
 
 .sub-header {
     background-color: $color-subheader;
 }
-
 
 .contacto-contenedor {
     display: flex;
@@ -295,6 +279,7 @@ header {
         flex: 1;
         min-width: 300px;
         max-width: 600px;
+        animation: fadeIn 0.8s ease-out;
 
         h3 {
             margin-top: 1.5rem;
@@ -314,6 +299,7 @@ header {
         min-width: 300px;
         max-width: 500px;
         height: 650px;
+        animation: fadeIn 1s ease-out;
 
         iframe {
             width: 100%;
@@ -329,8 +315,12 @@ header {
     margin-right: 10px;
     vertical-align: middle;
     border-radius: 6px;
-}
+    transition: transform $transition-default;
 
+    &:hover {
+        transform: scale(1.2);
+    }
+}
 
 .products {
     padding: 5rem 5%;
@@ -342,6 +332,7 @@ header {
         margin-bottom: 3rem;
         font-size: 2rem;
         color: $color-text;
+        animation: slideInFromTop 0.6s ease-out;
     }
 
     .product-grid {
@@ -356,6 +347,7 @@ header {
         overflow: hidden;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         transition: transform $transition-default, box-shadow $transition-default;
+        animation: fadeIn 0.8s ease-out;
 
         &:hover {
             transform: translateY(-10px);
@@ -366,6 +358,11 @@ header {
             height: 250px;
             width: 100%;
             object-fit: cover;
+            transition: transform $transition-default;
+
+            &:hover {
+                transform: scale(1.05);
+            }
         }
 
         .product-info {
@@ -397,11 +394,11 @@ header {
 
             &:hover {
                 background-color: $color-add-to-cart-hover;
+                animation: pulse 0.5s;
             }
         }
     }
 }
-
 
 .product-detail {
     padding: 5rem 5%;
@@ -422,15 +419,18 @@ header {
         color: $color-text;
         display: flex;
         align-items: center;
+        transition: color $transition-default;
 
         &:hover {
             color: #969696e8;
+            transform: translateX(-5px);
         }
     }
 
     .detail-content {
         display: flex;
         gap: 3rem;
+        animation: fadeIn 0.8s ease-out;
 
         .detail-images {
             flex: 1;
@@ -441,6 +441,11 @@ header {
                 object-fit: cover;
                 border-radius: 10px;
                 margin-bottom: 1rem;
+                transition: transform $transition-default;
+
+                &:hover {
+                    transform: scale(1.02);
+                }
             }
 
             .detail-thumbnails {
@@ -454,9 +459,15 @@ header {
                     border-radius: 5px;
                     cursor: pointer;
                     border: 2px solid transparent;
+                    transition: all $transition-default;
 
                     &.active {
                         border-color: #808376e8;
+                        transform: scale(1.1);
+                    }
+
+                    &:hover {
+                        transform: scale(1.1);
                     }
                 }
             }
@@ -468,6 +479,7 @@ header {
             .detail-title {
                 font-size: 2rem;
                 margin-bottom: 1rem;
+                animation: slideInFromTop 0.6s ease-out;
             }
 
             .detail-price {
@@ -475,15 +487,18 @@ header {
                 font-weight: 700;
                 color: $color-detail-price;
                 margin-bottom: 1.5rem;
+                animation: fadeIn 0.8s ease-out;
             }
 
             .detail-description {
                 margin-bottom: 2rem;
                 line-height: 1.6;
+                animation: fadeIn 1s ease-out;
             }
 
             .size-selector {
                 margin-bottom: 2rem;
+                animation: fadeIn 1.2s ease-out;
 
                 h3 {
                     margin-bottom: 1rem;
@@ -501,11 +516,17 @@ header {
                         background: none;
                         border-radius: 5px;
                         cursor: pointer;
+                        transition: all $transition-default;
 
                         &.active {
                             background-color: #909288e8;
                             color: $color-white;
                             border-color: #9c9e91e8;
+                            transform: scale(1.1);
+                        }
+
+                        &:hover {
+                            transform: scale(1.05);
                         }
                     }
                 }
@@ -513,6 +534,7 @@ header {
 
             .detail-features {
                 margin-top: 2rem;
+                animation: fadeIn 1.4s ease-out;
 
                 ul {
                     list-style-position: inside;
@@ -521,12 +543,16 @@ header {
 
                 li {
                     margin-bottom: 0.5rem;
+                    transition: transform $transition-default;
+
+                    &:hover {
+                        transform: translateX(5px);
+                    }
                 }
             }
         }
     }
 }
-
 
 .nosotros-contenedor,
 .ventas-contenedor {
@@ -536,6 +562,7 @@ header {
     background-color: $color-white;
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-out;
 
     .nosotros-texto,
     .ventas-texto {
@@ -546,7 +573,6 @@ header {
     }
 }
 
-
 .experiencia-section {
     background: linear-gradient(135deg, #f1f1f1, #e0e0e0);
     border-radius: 20px;
@@ -556,6 +582,7 @@ header {
     font-family: 'Arial', sans-serif;
     margin: 20px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    animation: fadeIn 1s ease-out;
 
     .experiencia-subtitulo {
         font-size: 1rem;
@@ -571,6 +598,7 @@ header {
         line-height: 1.4;
         margin: 0 auto 30px;
         max-width: 700px;
+        animation: slideInFromTop 0.8s ease-out;
     }
 
     .formulario-test-drive {
@@ -580,6 +608,7 @@ header {
         gap: 12px;
         max-width: 400px;
         margin: 0 auto;
+        animation: fadeIn 1.2s ease-out;
 
         input {
             width: 100%;
@@ -587,6 +616,12 @@ header {
             border: 1px solid #ccc;
             border-radius: 6px;
             font-size: 1rem;
+            transition: all $transition-default;
+
+            &:focus {
+                transform: scale(1.02);
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            }
         }
 
         button {
@@ -599,20 +634,22 @@ header {
             font-weight: bold;
             cursor: pointer;
             transition: background-color $transition-default ease;
+            animation: pulse 2s infinite;
 
             &:hover {
                 background-color: #555;
+                animation: none;
             }
         }
     }
 }
-
 
 footer {
     background-color: $color-footer;
     color: $color-white;
     padding: 3rem 5%;
     text-align: center;
+    animation: fadeIn 1s ease-out;
 
     .footer-content {
         max-width: 1400px;
@@ -627,15 +664,31 @@ footer {
 
         li {
             margin: 0 1rem;
-        }
+            position: relative;
 
-        a {
-            color: $color-white;
-            text-decoration: none;
-            transition: color $transition-default;
+            &::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: -5px;
+                left: 0;
+                background-color: $color-white;
+                transition: width $transition-default;
+            }
 
-            &:hover {
-                color: $color-footer-hover;
+            &:hover::after {
+                width: 100%;
+            }
+
+            a {
+                color: $color-white;
+                text-decoration: none;
+                transition: color $transition-default;
+
+                &:hover {
+                    color: $color-footer-hover;
+                }
             }
         }
     }
@@ -647,10 +700,12 @@ footer {
             color: $color-white;
             margin: 0 0.5rem;
             font-size: 1.5rem;
-            transition: color $transition-default;
+            transition: all $transition-default;
+            display: inline-block;
 
             &:hover {
                 color: #919484e8;
+                transform: translateY(-5px) scale(1.2);
             }
         }
     }
@@ -660,7 +715,6 @@ footer {
         font-size: 0.9rem;
     }
 }
-
 
 .whatsapp-float {
     position: fixed;
@@ -674,9 +728,11 @@ footer {
     border-radius: 50%;
     overflow: hidden;
     transition: transform $transition-default ease;
+    animation: float 3s ease-in-out infinite;
 
     &:hover {
         transform: scale(1.1);
+        animation: none;
     }
 
     img {
@@ -686,24 +742,32 @@ footer {
     }
 }
 
-
 .Iconowpp {
     display: inline-block;
     height: 65px;
     padding: 10px 0px 0px 10px;
+    transition: transform $transition-default;
+
+    &:hover {
+        transform: scale(1.1);
+    }
 }
 
 .Iconoig {
     display: inline-block;
     height: 60px;
     padding: 10px 0px 0px 10px;
+    transition: transform $transition-default;
+
+    &:hover {
+        transform: scale(1.1);
+    }
 }
 
 .wsp {
     color: rgb(17, 17, 17);
     text-decoration: none;
 }
-
 
 .overlay {
     position: fixed;
@@ -723,7 +787,6 @@ footer {
     }
 }
 
-
 .menu-toggle {
     display: none;
     background: none;
@@ -732,6 +795,11 @@ footer {
     font-size: 1.8rem;
     cursor: pointer;
     margin-right: 1rem;
+    transition: transform $transition-default;
+
+    &:hover {
+        transform: rotate(90deg);
+    }
 }
 
 @media (max-width: 1024px) {
@@ -752,6 +820,7 @@ footer {
 
         &.active {
             display: flex;
+            animation: slideInFromTop 0.5s ease-out;
         }
 
         li {
