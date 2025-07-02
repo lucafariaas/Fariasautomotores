@@ -1,4 +1,4 @@
-/* Variables */
+
 $font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 $color-bg: #f0f0f0;
 $color-text: #333;
@@ -29,6 +29,7 @@ body {
     color: $color-text;
 }
 
+
 header {
     background-color: $color-header;
     box-shadow: $shadow-header;
@@ -36,53 +37,104 @@ header {
     top: 0;
     z-index: 100;
 
-    .navbar {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        padding: 1.5rem 2rem;
-        min-height: 90px;
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centramos el contenido principal */
+    position: relative;
+    padding: 1.5rem 2rem;
+    min-height: 90px;
 
-        .logo {
-            position: absolute;
-            left: 2rem;
+    .logo {
+        position: absolute;
+        left: 2rem;
 
-            img {
-                height: 65px;
-                display: block;
-            }
+        img {
+            height: 65px;
+            display: block;
         }
+    }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
+    .menu-toggle {
+        display: none; /* Oculto en desktop */
+        position: absolute;
+        right: 2rem;
+        background: none;
+        border: none;
+        color: $color-white;
+        font-size: 1.8rem;
+        cursor: pointer;
+        z-index: 101;
     }
 
     .lista {
         display: flex;
         list-style: none;
+        margin: 0 auto; /* Centra la lista */
 
         li {
-            margin-left: 2rem;
-        }
+            margin: 0 1rem; /* Espaciado uniforme */
 
-        a {
-            text-decoration: none;
-            color: $color-white;
-            font-weight: 500;
-            transition: color $transition-default;
+            a {
+                text-decoration: none;
+                color: $color-white;
+                font-weight: 500;
+                transition: color $transition-default;
 
-            &:hover {
-                color: #fefffe;
+                &:hover {
+                    color: #fefffe;
+                }
             }
         }
     }
 
     .desplegable {
         position: relative;
+        /* ... (otros estilos desplegable) ... */
+    }
+}
+
+/* Estilos responsive */
+@media (max-width: 1024px) {
+    .navbar {
+        justify-content: space-between;
+
+        .menu-toggle {
+            display: block; /* Mostramos el hamburguesa */
+        }
+
+        .lista {
+            position: fixed;
+            top: 90px; /* Debajo del header */
+            left: 0;
+            width: 100%;
+            background-color: darken($color-header, 5%);
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 0;
+            margin: 0;
+            transform: translateY(-150%);
+            transition: transform 0.3s ease;
+            z-index: 100;
+
+            &.active {
+                transform: translateY(0);
+            }
+
+            li {
+                margin: 1rem 0 !important;
+                width: 100%;
+                text-align: center;
+
+                a {
+                    display: block;
+                    padding: 0.5rem;
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+}
 
         .submenu {
             display: none;
@@ -113,7 +165,6 @@ header {
             display: block;
         }
     }
-}
 
 
 .hero {
@@ -426,7 +477,7 @@ header {
         font-size: 1.1rem;
         line-height: 1.8;
         color: $color-text;
-        text-align: justify;
+        text-align:justify;
     }
 }
 

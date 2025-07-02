@@ -97,16 +97,16 @@
         document.querySelector('.menu-toggle').addEventListener('click', function() {
             document.querySelector('.lista').classList.toggle('active');
             this.textContent = document.querySelector('.lista').classList.contains('active') ? '✕' : '☰';
-        
+        });
 
         document.querySelectorAll('.lista a').forEach(link => {
             link.addEventListener('click', function() {
                 if (window.innerWidth <= 1024) {
                     document.querySelector('.lista').classList.remove('active');
                     document.querySelector('.menu-toggle').textContent = '☰';
-                
-            
-        
+                }
+            });
+        });
     </script>
 </body>
 </html>
