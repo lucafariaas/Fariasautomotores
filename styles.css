@@ -780,5 +780,78 @@ footer .copyright {
     height: 50px;
   }
 }
+.ventas-contenedor {
+  max-width: 1200px;
+  padding: 3rem 2rem;
+}
+.ventas-contenedor .section-title {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-size: 2.2rem;
+  color: #5c5a5a;
+  animation: slideInFromTop 0.6s ease-out;
+}
+
+.ventas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.ventas-beneficio {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+}
+.ventas-beneficio:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+.ventas-beneficio .ventas-icono {
+  font-size: 2.5rem;
+  color: rgba(169, 203, 34, 0.9098039216);
+  margin-bottom: 1rem;
+}
+.ventas-beneficio h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #5c5a5a;
+}
+.ventas-beneficio p {
+  color: #333;
+  line-height: 1.6;
+}
+
+.ventas-cta {
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(92, 90, 90, 0.05), rgba(169, 203, 34, 0.05));
+  border-radius: 10px;
+  margin-top: 2rem;
+}
+.ventas-cta .ventas-texto-destacado {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+  color: #5c5a5a;
+}
+.ventas-cta .btn {
+  font-size: 1.1rem;
+  padding: 1rem 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .ventas-grid {
+    grid-template-columns: 1fr;
+  }
+  .ventas-contenedor .section-title {
+    font-size: 1.8rem;
+  }
+}
 
 /*# sourceMappingURL=styles.css.map */
