@@ -853,5 +853,212 @@ footer .copyright {
     font-size: 1.8rem;
   }
 }
+.nosotros-banner {
+  background: linear-gradient(135deg, #2c3e50, #a6acb8);
+  padding: 4rem 2rem;
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 0.8s ease-out;
+}
+.nosotros-banner .banner-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+.nosotros-banner .banner-logo {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.3));
+  animation: float 4s ease-in-out infinite;
+}
+.nosotros-banner .banner-text {
+  margin-top: 2rem;
+}
+.nosotros-banner .banner-text h1 {
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  animation: slideInFromTop 0.8s ease-out;
+}
+.nosotros-banner .banner-text p {
+  font-size: 1.4rem;
+  opacity: 0.9;
+  animation: fadeIn 1.2s ease-out;
+}
+.nosotros-banner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.nosotros-contenido {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+  animation: fadeIn 1s ease-out;
+}
+.nosotros-contenido .contenido-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.nosotros-contenido h2 {
+  font-size: 2.2rem;
+  color: #5c5a5a;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+.nosotros-contenido h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: rgba(169, 203, 34, 0.9098039216);
+}
+.nosotros-contenido p {
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+.nosotros-contenido strong {
+  color: #5c5a5a;
+  font-weight: 600;
+}
+
+.marcas-destacadas {
+  margin-top: 2.5rem;
+}
+.marcas-destacadas h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #5c5a5a;
+}
+.marcas-destacadas .marcas-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+}
+.marcas-destacadas .marca-item {
+  padding: 0.5rem;
+  background: rgba(169, 203, 34, 0.1);
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.contenido-logros {
+  display: grid;
+  gap: 1.5rem;
+}
+.contenido-logros .logro-item {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: transform 0.3s;
+}
+.contenido-logros .logro-item:hover {
+  transform: translateY(-5px);
+}
+.contenido-logros .logro-item .logro-numero {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: rgba(169, 203, 34, 0.9098039216);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.contenido-logros .logro-item .logro-texto {
+  font-size: 1rem;
+  color: #333;
+}
+
+.nosotros-equipo {
+  background: #f0f0f0;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+.nosotros-equipo h2 {
+  font-size: 2.2rem;
+  color: #5c5a5a;
+  margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+}
+.nosotros-equipo h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: rgba(169, 203, 34, 0.9098039216);
+}
+.nosotros-equipo .compromiso-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.nosotros-equipo .compromiso-item {
+  background: #ffffff;
+  padding: 2.5rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s;
+}
+.nosotros-equipo .compromiso-item:hover {
+  transform: translateY(-10px);
+}
+.nosotros-equipo .compromiso-item .compromiso-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+}
+.nosotros-equipo .compromiso-item h3 {
+  font-size: 1.4rem;
+  color: #5c5a5a;
+  margin-bottom: 1rem;
+}
+.nosotros-equipo .compromiso-item p {
+  color: #333;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .nosotros-banner {
+    padding: 3rem 1rem;
+  }
+  .nosotros-banner .banner-logo {
+    max-width: 280px;
+  }
+  .nosotros-banner h1 {
+    font-size: 2rem !important;
+  }
+  .nosotros-banner p {
+    font-size: 1.2rem !important;
+  }
+  .nosotros-contenido .contenido-grid {
+    grid-template-columns: 1fr;
+  }
+  .marcas-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
 
 /*# sourceMappingURL=styles.css.map */
