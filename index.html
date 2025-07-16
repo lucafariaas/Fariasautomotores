@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>fariasautomotores-Home</title>
+    <!-- Icon del sitio -->
     <link rel="shortcut icon" href="./assets/LOGO.png" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <nav class="navbar">
+            <!-- Logo que enlaza a la página principal -->
             <a href="./index.html" class="logo"><img src="./assets/LOGO.png" alt="Logo Farias Automotores" id="logo1"></a>
+            <!-- Menu Hamburgesa -->
             <button class="menu-toggle" aria-label="Menú">☰</button>
             <ul class="lista">
                 <li><a href="./index.html">Inicio</a></li>
@@ -23,14 +26,17 @@
     </header>
 
     <main>
+        <!-- Sección hero con el título principal-->
         <section class="hero">
             <h1>G.Farias AUTOMOTORES</h1>
             <p>G.Farias - Tu próxima parada empieza aquí.</p>
             <a href="#productos" class="btn">Automotores</a>
         </section>
 
+        <!-- Productos destacados -->
         <section class="products" id="productos">
             <h2 class="section-title">AUTOMOTORES A LA VENTA</h2>
+            <!-- Grid -->
             <div class="product-grid">
                 <div class="product-card">
                     <img src="./assets/218i.jpg" alt="BMW 218i 2018" class="product-img" loading="lazy">
@@ -62,12 +68,14 @@
             </div>
         </section>
 
+        <!--Test drive -->
         <section class="experiencia-section">
             <div class="experiencia-content">
                 <p class="experiencia-subtitulo">Experiencia</p>
                 <h2 class="experiencia-titulo">
                     <br>MANÉJALO Y DESCUBRE EL MUNDO<br>EN SU TOTALIDAD.
                 </h2>
+                <!-- Formulario para solicitar el test drive -->
                 <form class="formulario-test-drive">
                     <input type="text" name="nombre" placeholder="Tu nombre" required>
                     <input type="email" name="email" placeholder="Tu email" required>
@@ -78,8 +86,10 @@
         </section>
     </main>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-content">
+            <!-- Iconos -->
             <div class="social-icons">
                 <a href="https://wa.me/2915137488" aria-label="WhatsApp">
                     <img src="./assets/wsplogo.jpg" alt="WhatsApp" class="Iconowpp">
@@ -89,10 +99,12 @@
         </div>
     </footer>
 
+    <!-- Botón flotante de WhatsApp -->
     <a href="https://wa.me/542915137488" target="_blank" class="whatsapp-float" aria-label="Contactar por WhatsApp">
         <img src="./assets/1671c09a32f98796ede36fabfab4dee7.jpg" alt="WhatsApp">
     </a>
 
+    <!--Responsive -->
     <script>
         document.querySelector('.menu-toggle').addEventListener('click', function() {
             document.querySelector('.lista').classList.toggle('active');

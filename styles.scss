@@ -38,6 +38,7 @@ $transition-default: 0.3s;
     100% { transform: translateY(0px); }
 }
 
+/* Reset global y configuración base */
 * {
     margin: 0;
     padding: 0;
@@ -45,12 +46,14 @@ $transition-default: 0.3s;
     font-family: $font-primary;
 }
 
+/* Estilos generales */
 body {
     background-color: $color-bg;
     color: $color-text;
     animation: fadeIn 0.5s ease-out;
 }
 
+/* Estilos para el encabezado */
 header {
     background-color: $color-header;
     box-shadow: $shadow-header;
@@ -59,6 +62,7 @@ header {
     z-index: 100;
     animation: slideInFromTop 0.5s ease-out;
 
+    /* Contenedor principal de navegación */
     .navbar {
         display: flex;
         align-items: center;
@@ -67,6 +71,7 @@ header {
         padding: 1.5rem 2rem;
         min-height: 90px;
 
+        /* Estilos para el logo */
         .logo {
             position: absolute;
             left: 2rem;
@@ -82,6 +87,7 @@ header {
             }
         }
 
+        /* Botón de menú para móviles */
         .menu-toggle {
             display: none; 
             position: absolute;
@@ -99,15 +105,18 @@ header {
             }
         }
 
+        /* Lista de navegación principal */
         .lista {
             display: flex;
             list-style: none;
             margin: 0 auto; 
 
+            /* Elementos individuales del menú */
             li {
                 margin: 0 1rem; 
                 position: relative;
 
+                /* Efecto de subrayado al pasar el mouse */
                 &::after {
                     content: '';
                     position: absolute;
@@ -123,6 +132,7 @@ header {
                     width: 100%;
                 }
 
+                /* Estilos para los enlaces del menú */
                 a {
                     text-decoration: none;
                     color: $color-white;

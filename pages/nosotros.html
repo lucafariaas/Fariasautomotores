@@ -8,13 +8,14 @@
     <link rel="shortcut icon" href="../assets/LOGO.png" type="image/x-icon">
 </head>
 <body>
+    <!-- Encabezado -->
     <header>
         <nav class="navbar">
             <a href="../index.html" class="logo"><img src="../assets/LOGO.png" alt="Logo Farias Automotores" id="logo1"></a>
             <button class="menu-toggle" aria-label="Menú">☰</button>
             <ul class="lista">
                 <li><a href="../index.html">Inicio</a></li>
-                <li><a href="../index.html#productos">Productos</a></li>
+                <li><a href="../pages/tienda.html">Productos</a></li>
                 <li><a href="../pages/nosotros.html">Nosotros</a></li>
                 <li><a href="../pages/contacto.html">Contacto</a></li>
                 <li><a href="../pages/ventas.html">Ventas</a></li>
@@ -23,6 +24,7 @@
     </header>
     
     <main>
+        <!-- Banner Nosotros -->
         <section class="nosotros-banner">
             <div class="banner-content">
                 <img src="../assets/nosotros.jpg" alt="G. Farias Automotores" class="banner-logo">
@@ -33,13 +35,16 @@
             </div>
         </section>
 
+        <!-- Sección de contenido principal -->
         <section class="nosotros-contenido">
             <div class="contenido-grid">
+                <!-- Texto descriptivo sobre la empresa -->
                 <div class="contenido-texto">
                     <h2>Nuestra Esencia</h2>
                     <p>En <strong>G. Farias Automotores</strong>, fusionamos tradición familiar con innovación automotriz para ofrecerte una experiencia de compra única.</p>
                     <p>Cada vehículo en nuestro catálogo refleja nuestro compromiso con la calidad, la transparencia y el servicio personalizado que nos distingue.</p>
                     
+                    <!-- Listado de marcas -->
                     <div class="marcas-destacadas">
                         <h3>Marcas que confían en nosotros</h3>
                         <div class="marcas-grid">
@@ -51,6 +56,7 @@
                     </div>
                 </div>
                 
+                <!-- Logros destacados de la empresa -->
                 <div class="contenido-logros">
                     <div class="logro-item">
                         <span class="logro-numero">+500</span>
@@ -68,6 +74,7 @@
             </div>
         </section>
 
+        <!-- Sección de compromiso -->
         <section class="nosotros-equipo">
             <h2>Nuestro Compromiso</h2>
             <div class="compromiso-grid">
@@ -90,6 +97,7 @@
         </section>
     </main>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="social-icons">
@@ -101,10 +109,12 @@
         </div>
     </footer>
 
+    <!-- Botón flotante de WhatsApp -->
     <a href="https://wa.me/542915137488" target="_blank" class="whatsapp-float" aria-label="Contactar por WhatsApp">
         <img src="../assets/1671c09a32f98796ede36fabfab4dee7.jpg" alt="WhatsApp">
     </a>
 
+    <!-- Responsive -->
     <script>
         document.querySelector('.menu-toggle').addEventListener('click', function() {
             document.querySelector('.lista').classList.toggle('active');
