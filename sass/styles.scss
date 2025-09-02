@@ -1358,3 +1358,154 @@ footer {
         padding: 0.8rem 1.5rem;
     }
 }
+
+/* Estilos para el Simulador de Ventas */
+.simulador-ventas {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.simulador-descripcion {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #5c5a5a;
+    line-height: 1.6;
+}
+
+.simulador-contenedor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.simulador-formulario {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #5c5a5a;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: #5c5a5a;
+}
+
+.help-text {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    color: #7f8c8d;
+}
+
+#tasa-interes {
+    width: 100%;
+    margin: 0.5rem 0;
+}
+
+#tasa-interes-value {
+    display: inline-block;
+    background: #5c5a5a;
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.btn-simulador {
+    background-color: #5c5a5a;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.btn-simulador:hover {
+    background-color: #424141;
+}
+
+.simulador-resultados {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.simulador-resultados h3 {
+    margin-bottom: 1rem;
+    color: #5c5a5a;
+    text-align: center;
+}
+
+.instruccion {
+    text-align: center;
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+.resultado-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.resultado-label {
+    font-weight: 600;
+    color: #5c5a5a;
+}
+
+.resultado-valor {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.simulador-botones {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .simulador-contenedor {
+        grid-template-columns: 1fr;
+    }
+    
+    .simulador-botones {
+        flex-direction: column;
+    }
+    
+    .simulador-botones .btn-simulador {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+}
