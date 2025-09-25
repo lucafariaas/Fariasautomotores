@@ -72,6 +72,15 @@
                 <p>Utiliza nuestro simulador para calcular cuotas de financiamiento personalizadas. Explora diferentes opciones de pago y encuentra el plan que mejor se adapte a tu presupuesto.</p>
             </div>
 
+            <!-- Selector de vehículo -->
+            <div class="selector-vehiculo">
+                <h3>Selecciona un vehículo</h3>
+                <select id="selector-vehiculo" class="selector">
+                    <option value="">-- Selecciona un vehículo --</option>
+                </select>
+                <div id="info-vehiculo" class="info-vehiculo"></div>
+            </div>
+
             <div class="simulador-contenedor">
                 <div class="simulador-formulario">
                     <div class="form-group">
@@ -103,6 +112,7 @@
                     </div>
                     
                     <button id="calcular-cuotas" class="btn-simulador">Calcular Cuotas</button>
+                    <button id="guardar-simulacion" class="btn-simulador secundario">Guardar Simulación</button>
                 </div>
                 
                 <div class="simulador-resultados">
@@ -113,10 +123,78 @@
                 </div>
             </div>
 
+            <!-- Historial de simulaciones -->
+            <div class="historial-simulaciones">
+                <h3>Historial de Simulaciones Guardadas</h3>
+                <div id="lista-simulaciones" class="lista-simulaciones">
+                    <p class="sin-simulaciones">No hay simulaciones guardadas</p>
+                </div>
+            </div>
+
             <div class="simulador-botones">
-                <button class="btn-simulador" onclick="explorarVehiculos()">Explorar Vehículos</button>
-                <button class="btn-simulador" onclick="solicitarTestDrive()">Solicitar Test Drive</button>
-                <button class="btn-simulador" onclick="contactarAsesor()">Contactar con Asesor</button>
+                <button id="explorar-vehiculos" class="btn-simulador">Explorar Vehículos</button>
+                <button id="solicitar-test-drive" class="btn-simulador">Solicitar Test Drive</button>
+                <button id="contactar-asesor" class="btn-simulador">Contactar con Asesor</button>
+                <button id="limpiar-historial" class="btn-simulador secundario">Limpiar Historial</button>
+            </div>
+
+            <!-- Modal para test drive -->
+            <div id="modal-test-drive" class="modal">
+                <div class="modal-contenido">
+                    <span class="cerrar-modal">&times;</span>
+                    <h3>Solicitar Test Drive</h3>
+                    <form id="form-test-drive">
+                        <div class="form-group">
+                            <label for="nombre-test">Nombre completo:</label>
+                            <input type="text" id="nombre-test" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono-test">Teléfono:</label>
+                            <input type="tel" id="telefono-test" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email-test">Email:</label>
+                            <input type="email" id="email-test" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="vehiculo-test">Vehículo de interés:</label>
+                            <select id="vehiculo-test" required>
+                                <option value="">-- Selecciona un vehículo --</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-simulador">Enviar Solicitud</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal para contactar asesor -->
+            <div id="modal-asesor" class="modal">
+                <div class="modal-contenido">
+                    <span class="cerrar-modal">&times;</span>
+                    <h3>Contactar con Asesor</h3>
+                    <form id="form-asesor">
+                        <div class="form-group">
+                            <label for="nombre-asesor">Nombre completo:</label>
+                            <input type="text" id="nombre-asesor" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono-asesor">Teléfono:</label>
+                            <input type="tel" id="telefono-asesor" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="consulta-asesor">Consulta:</label>
+                            <textarea id="consulta-asesor" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-simulador">Enviar Consulta</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Lista de vehículos -->
+            <div id="lista-vehiculos" class="lista-vehiculos">
+                <h3>Vehículos Disponibles</h3>
+                <div id="grid-vehiculos" class="grid-vehiculos"></div>
+                <button id="cerrar-lista-vehiculos" class="btn-simulador secundario">Cerrar Lista</button>
             </div>
         </section>
     </main>
@@ -140,7 +218,7 @@
         <img src="../assets/1671c09a32f98796ede36fabfab4dee7.jpg" alt="WhatsApp">
     </a>
 
-    <!-- Responsive -->
+    <!-- Script del menú responsive -->
     <script>
         document.querySelector('.menu-toggle').addEventListener('click', function() {
             document.querySelector('.lista').classList.toggle('active');
@@ -157,213 +235,7 @@
         });
     </script>
 
-    <!-- Script del Simulador -->
-    <script>
-        // Variables y arrays para el simulador
-        const vehiculos = [
-            { id: 1, marca: "BMW", modelo: "218i", año: 2018, precio: 25000, disponible: true },
-            { id: 2, marca: "Peugeot", modelo: "207 GT", año: 2011, precio: 15000, disponible: true },
-            { id: 3, marca: "Ford", modelo: "Focus", año: 2011, precio: 14000, disponible: true },
-            { id: 4, marca: "Citroën", modelo: "C4 Cactus", año: 2018, precio: 22000, disponible: false },
-            { id: 5, marca: "Ford", modelo: "Ranger", año: 2022, precio: 35000, disponible: true },
-            { id: 6, marca: "Audi", modelo: "A4", año: 2007, precio: 18000, disponible: true },
-            { id: 7, marca: "BMW", modelo: "GS700", año: 2016, precio: 12000, disponible: true },
-            { id: 8, marca: "Audi", modelo: "Q5", año: 2018, precio: 32000, disponible: true },
-            { id: 9, marca: "Ford", modelo: "Ranger", año: 2021, precio: 33000, disponible: false },
-            { id: 10, marca: "BMW", modelo: "330I Sport", año: 2019, precio: 38000, disponible: true },
-            { id: 11, marca: "Audi", modelo: "Q5", año: 2020, precio: 35000, disponible: true },
-            { id: 12, marca: "Toyota", modelo: "Hilux", año: 2018, precio: 30000, disponible: true }
-        ];
-
-        // Inicialización del simulador
-        document.addEventListener('DOMContentLoaded', function() {
-            // Configurar el slider de tasa de interés
-            const tasaInteresSlider = document.getElementById('tasa-interes');
-            const tasaInteresValue = document.getElementById('tasa-interes-value');
-            
-            tasaInteresSlider.addEventListener('input', function() {
-                tasaInteresValue.textContent = this.value + '%';
-            });
-            
-            // Configurar el botón de calcular
-            document.getElementById('calcular-cuotas').addEventListener('click', calcularFinanciamiento);
-            
-            // Configurar validación de enganche
-            const precioInput = document.getElementById('precio-vehiculo');
-            const engancheInput = document.getElementById('enganche');
-            
-            precioInput.addEventListener('input', validarEnganche);
-            engancheInput.addEventListener('input', validarEnganche);
-            
-            // Mensaje inicial en consola
-            console.log("Bienvenido al Simulador de Financiamiento de G.Farias Automotores");
-        });
-        
-        function validarEnganche() {
-            const precio = parseFloat(document.getElementById('precio-vehiculo').value);
-            const enganche = parseFloat(document.getElementById('enganche').value);
-            const minEnganche = precio * 0.1;
-            
-            if (enganche < minEnganche) {
-                document.querySelector('.help-text').style.color = '#e74c3c';
-                document.querySelector('.help-text').textContent = `Mínimo: $${minEnganche.toFixed(2)} (10%)`;
-            } else {
-                document.querySelector('.help-text').style.color = '#7f8c8d';
-                document.querySelector('.help-text').textContent = `Mínimo: $${minEnganche.toFixed(2)} (10%)`;
-            }
-        }
-        
-        function calcularFinanciamiento() {
-            const precio = parseFloat(document.getElementById('precio-vehiculo').value);
-            const enganche = parseFloat(document.getElementById('enganche').value);
-            const plazo = parseInt(document.getElementById('plazo').value);
-            const tasaInteresAnual = parseFloat(document.getElementById('tasa-interes').value);
-            
-            // Validaciones
-            if (isNaN(precio) || isNaN(enganche) || precio <= 0) {
-                alert("Por favor, ingrese valores válidos para el precio y enganche.");
-                return;
-            }
-            
-            const minEnganche = precio * 0.1;
-            if (enganche < minEnganche) {
-                alert(`El enganche mínimo es de $${minEnganche.toFixed(2)} (10% del precio del vehículo).`);
-                return;
-            }
-            
-            if (enganche >= precio) {
-                alert("El enganche no puede ser mayor o igual al precio del vehículo.");
-                return;
-            }
-            
-            // Cálculos financieros
-            const montoFinanciar = precio - enganche;
-            const tasaInteresMensual = (tasaInteresAnual / 100) / 12;
-            const cuotaMensual = montoFinanciar * (tasaInteresMensual * Math.pow(1 + tasaInteresMensual, plazo)) / (Math.pow(1 + tasaInteresMensual, plazo) - 1);
-            const totalAPagar = cuotaMensual * plazo;
-            const totalIntereses = totalAPagar - montoFinanciar;
-            
-            // Mostrar resultados
-            const resultadosContainer = document.getElementById('resultados-container');
-            resultadosContainer.innerHTML = `
-                <div class="resultado-item">
-                    <span class="resultado-label">Monto a financiar:</span>
-                    <span class="resultado-valor">$${montoFinanciar.toFixed(2)}</span>
-                </div>
-                <div class="resultado-item">
-                    <span class="resultado-label">Cuota mensual:</span>
-                    <span class="resultado-valor">$${cuotaMensual.toFixed(2)}</span>
-                </div>
-                <div class="resultado-item">
-                    <span class="resultado-label">Total de intereses:</span>
-                    <span class="resultado-valor">$${totalIntereses.toFixed(2)}</span>
-                </div>
-                <div class="resultado-item">
-                    <span class="resultado-label">Total a pagar:</span>
-                    <span class="resultado-valor">$${totalAPagar.toFixed(2)}</span>
-                </div>
-                <div class="resultado-item">
-                    <span class="resultado-label">Costo total del vehículo:</span>
-                    <span class="resultado-valor">$${(totalAPagar + enganche).toFixed(2)}</span>
-                </div>
-            `;
-            
-            // Mostrar en consola
-            console.log("=== RESULTADOS DE FINANCIAMIENTO ===");
-            console.log(`Precio del vehículo: $${precio}`);
-            console.log(`Enganche: $${enganche}`);
-            console.log(`Monto a financiar: $${montoFinanciar.toFixed(2)}`);
-            console.log(`Plazo: ${plazo} meses`);
-            console.log(`Tasa de interés: ${tasaInteresAnual}% anual`);
-            console.log(`Cuota mensual: $${cuotaMensual.toFixed(2)}`);
-            console.log(`Total a pagar: $${totalAPagar.toFixed(2)}`);
-            console.log(`Total de intereses: $${totalIntereses.toFixed(2)}`);
-        }
-        
-        function explorarVehiculos() {
-            console.clear();
-            console.log("=== VEHÍCULOS DISPONIBLES EN G.FARIAS AUTOMOTORES ===");
-            console.log("");
-            
-            let disponibles = 0;
-            
-            for (let i = 0; i < vehiculos.length; i++) {
-                if (vehiculos[i].disponible) {
-                    console.log(`ID: ${vehiculos[i].id} | ${vehiculos[i].marca} ${vehiculos[i].modelo} (${vehiculos[i].año})`);
-                    console.log(`   Precio: $${vehiculos[i].precio}`);
-                    console.log("   -----------------------------------------");
-                    disponibles++;
-                }
-            }
-            
-            console.log("");
-            console.log(`Total de vehículos disponibles: ${disponibles}`);
-            
-            alert(`Se han encontrado ${disponibles} vehículos disponibles. Consulta la consola para ver los detalles.`);
-        }
-        
-        function solicitarTestDrive() {
-            const nombre = prompt("Por favor, ingrese su nombre:");
-            if (!nombre) {
-                alert("Debe ingresar un nombre válido.");
-                return;
-            }
-            
-            const telefono = prompt("Ingrese su número de teléfono:");
-            const email = prompt("Ingrese su email:");
-            
-            console.clear();
-            console.log("=== SOLICITUD DE TEST DRIVE ===");
-            console.log(`Nombre: ${nombre}`);
-            console.log(`Teléfono: ${telefono}`);
-            console.log(`Email: ${email}`);
-            console.log("");
-            console.log("Vehículos disponibles para test drive:");
-            
-            for (let i = 0; i < Math.min(5, vehiculos.length); i++) {
-                if (vehiculos[i].disponible) {
-                    console.log(`ID: ${vehiculos[i].id} - ${vehiculos[i].marca} ${vehiculos[i].modelo}`);
-                }
-            }
-            
-            const idTestDrive = parseInt(prompt("Ingrese el ID del vehículo para el test drive:"));
-            const vehiculoSeleccionado = vehiculos.find(v => v.id === idTestDrive && v.disponible);
-            
-            if (!vehiculoSeleccionado) {
-                alert("ID de vehículo no válido o vehículo no disponible para test drive.");
-                return;
-            }
-            
-            const confirmacion = confirm(`¿Confirmar test drive del ${vehiculoSeleccionado.marca} ${vehiculoSeleccionado.modelo}?`);
-            
-            if (confirmacion) {
-                console.log("");
-                console.log("=== SOLICITUD CONFIRMADA ===");
-                console.log(`Vehículo: ${vehiculoSeleccionado.marca} ${vehiculoSeleccionado.modelo} (${vehiculoSeleccionado.año})`);
-                console.log("Nos contactaremos con usted dentro de las próximas 24 horas.");
-                
-                alert("¡Solicitud confirmada! Nos contactaremos con usted para coordinar el test drive.");
-            } else {
-                alert("Solicitud cancelada.");
-            }
-        }
-        
-        function contactarAsesor() {
-            const nombre = prompt("Por favor, ingrese su nombre:");
-            if (!nombre) return;
-            
-            const telefono = prompt("Ingrese su número de teléfono:");
-            const consulta = prompt("Describa brevemente su consulta:");
-            
-            console.clear();
-            console.log("=== SOLICITUD DE CONTACTO ===");
-            console.log(`Nombre: ${nombre}`);
-            console.log(`Teléfono: ${telefono}`);
-            console.log(`Consulta: ${consulta}`);
-            console.log("Un asesor se contactará a la brevedad.");
-            
-            alert("¡Gracias por su interés! Un asesor se contactará con usted a la brevedad.");
-        }
-    </script>
+    <!-- Script del Simulador (archivo externo) -->
+    <script src="../js/simulador.js"></script>
 </body>
 </html>
